@@ -15,4 +15,8 @@ RSpec.describe User, type: :model do
       it { should validate_uniqueness_of(:username).ignoring_case_sensitivity }
     end
   end
+
+  describe "associations" do
+    it { is_expected.to have_many(:tweets).dependent(:destroy) }
+  end
 end
