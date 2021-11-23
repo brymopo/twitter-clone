@@ -18,4 +18,8 @@ class User < ApplicationRecord
     value = value.nil? ? value : value.downcase
     super(value)
   end
+
+  def slug
+    username.parameterize
+  end
 end
