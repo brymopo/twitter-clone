@@ -14,12 +14,14 @@ class User < ApplicationRecord
   has_many :followers, through: :user_followers, source: :follower
   has_many :following, through: :user_following, source: :followed
 
+  scope :alphabetical, -> { order(:full_name) }
+
   def username=(value)
     value = value.nil? ? value : value.downcase
     super(value)
   end
 
-  def slug
+  def to_param
     username.parameterize
   end
 end
