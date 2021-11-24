@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users, path: "", param: :slug, only: %i[show] do
+  resources :users, path: "", param: :username, only: [:show] do
+    member do
+      get :followers
+      get :following
+    end
     resources :tweets, only: %i[new create]
+    resources :follows, only: %i[new create]
   end
 end
