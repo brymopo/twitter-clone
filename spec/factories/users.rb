@@ -3,6 +3,6 @@ FactoryBot.define do
     full_name { Faker::Name.name }
     password { Faker::Internet.password }
     sequence(:email) { |n| "#{Faker::Internet.username}#{n}@#{Faker::Internet.domain_name}" }
-    sequence(:username) { |n| "#{Faker::Internet.username}#{n}" }
+    sequence(:username) { |n| "#{Faker::Internet.username separators: %w(-)}#{n}" }
   end
 end

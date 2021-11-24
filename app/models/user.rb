@@ -24,4 +24,10 @@ class User < ApplicationRecord
   def to_param
     username.parameterize
   end
+
+  def tweets_feed(include_following: true)
+    ids = [id]
+    ids.concat(following.pluck(:id)) if include_following
+    Tweet.where(user_id: ids).order("created_at DESC").includes(:user)
+  end
 end

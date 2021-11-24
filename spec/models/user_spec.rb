@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
       context "followers" do
         before do
           users.each do |u|
-            follow = Follow.create(follower_id: u.id, followed_id: user.id )
+            follow = Follow.create(follower_id: u.id, followed_id: user.id)
             expect(follow).to be_valid
           end
         end
@@ -97,7 +97,7 @@ RSpec.describe User, type: :model do
       context "following" do
         before do
           users.each do |u|
-            follow = Follow.create(follower_id: user.id, followed_id: u.id )
+            follow = Follow.create(follower_id: user.id, followed_id: u.id)
             expect(follow).to be_valid
           end
         end
@@ -105,6 +105,49 @@ RSpec.describe User, type: :model do
         subject { user.following.alphabetical.pluck(:full_name) }
 
         it { is_expected.to eq(in_order) }
+      end
+    end
+
+    describe "tweets_feed" do
+      let(:users_list) { create_list(:user, 5) }
+      let(:user) { create(:user) }
+      let!(:user_tweets) { create_list(:tweet, 5, user: user) }
+      let!(:following_tweets) { users_list.map { |u| create_list(:tweet, 5, user: u) } }
+
+      before do
+        users_list.each do |u|
+          follow = Follow.create(followed_id: u.id, follower_id: user.id)
+          expect(follow).to be_valid
+        end
+      end
+
+      context "when include_following is true" do
+        subject { user.tweets_feed }
+
+        it do
+          expect(subject.size).to eq(30)
+          previous_tweet_time = DateTime.current
+          subject.each do |tweet|
+            expect(tweet.created_at).to be <= previous_tweet_time
+            previous_tweet_time = tweet.created_at
+            expect(tweet.user.username).to be_present
+          end
+        end
+      end
+
+      context "when include_following is false" do
+        subject { user.tweets_feed include_following: false }
+
+        it do
+          expect(subject.size).to eq(5)
+          previous_tweet_time = DateTime.current
+          subject.each do |tweet|
+            expect(tweet.created_at).to be <= previous_tweet_time
+            previous_tweet_time = tweet.created_at
+            expect(tweet.user.username).to be_present
+          end
+          expect(subject).to match_array(user.tweets)
+        end
       end
     end
   end
