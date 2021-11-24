@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  root to: "static_pages#index"
+
   resources :users, path: "", param: :username, only: [:show] do
     member do
       get :followers
