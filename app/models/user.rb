@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :full_name, presence: true
-  validates :username, presence: true, uniqueness: true
+  validates :username,
+            presence: true,
+            uniqueness: true,
+            format: { with: /\A[a-zA-Z\d-]+\z/ }
   validates :email, presence: true, uniqueness: true
   has_many :tweets, dependent: :destroy
 

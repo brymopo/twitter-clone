@@ -16,6 +16,13 @@ RSpec.describe User, type: :model do
       it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
       it { should validate_uniqueness_of(:username).ignoring_case_sensitivity }
     end
+
+    context "format" do
+      it { is_expected.to allow_value("valid-username").for(:username) }
+      it { is_expected.to allow_value("alpha-numeric-2394").for(:username) }
+      it { is_expected.not_to allow_value("With spaces 2349").for(:username) }
+      it { is_expected.not_to allow_value("W!th-sp3c!@l-ch@racters").for(:username) }
+    end
   end
 
   describe "associations" do
