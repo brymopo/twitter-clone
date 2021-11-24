@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :set_user
+  before_action :authenticate_user!, :set_user, :set_usernames_followed
 
   def show
     @followers = user_actual.followers_count
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   private
 
-  attr_reader :user_actual
+  attr_reader :user_actual, :usernames_followed
 
   def set_user
     if is_current_user?
@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     else
       @user_actual = User.find_by!(username: params[:username])
     end
+  end
+
+  def set_usernames_followed
+    @usernames_followed = current_user.following.pluck(:username)
   end
 
   def is_current_user?

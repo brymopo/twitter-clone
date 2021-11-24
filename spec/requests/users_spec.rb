@@ -1,12 +1,5 @@
 require 'rails_helper'
 
-RSpec.shared_examples "show page" do
-  it { is_expected.to render_template(:show) }
-  it { expect(assigns(:followers)).not_to be_nil }
-  it { expect(assigns(:following)).not_to be_nil }
-  it { expect(assigns(:tweets_feed)).not_to be_nil }
-end
-
 RSpec.describe UsersController, type: :request do
   describe "GET /show" do
     let(:user) { create(:user) }
@@ -24,7 +17,11 @@ RSpec.describe UsersController, type: :request do
       end
 
       it { expect(response.status).to be(200) }
-      it_behaves_like "show page"
+      it { is_expected.to render_template(:show) }
+      it { expect(assigns(:followers)).not_to be_nil }
+      it { expect(assigns(:following)).not_to be_nil }
+      it { expect(assigns(:tweets_feed)).not_to be_nil }
+      it { expect(assigns(:usernames_followed)).not_to be_nil }
     end
   end
 
@@ -56,6 +53,7 @@ RSpec.describe UsersController, type: :request do
         expect(assigns(:followers).size).to eq(10)
         expected_array = user.reload.followers.alphabetical.first(10)
         expect(assigns(:followers)).to eq(expected_array)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
 
@@ -69,6 +67,7 @@ RSpec.describe UsersController, type: :request do
         expect(assigns(:followers).size).to eq(5)
         expected_array = user.reload.followers.alphabetical.last(5)
         expect(assigns(:followers)).to eq(expected_array)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
 
@@ -80,6 +79,7 @@ RSpec.describe UsersController, type: :request do
         response_followers = assigns(:followers)
         expect(user.reload.followers.alphabetical.first(10)).not_to eq(response_followers)
         expect(followed_user.reload.followers.alphabetical.first(10)).to eq(response_followers)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
   end
@@ -112,6 +112,7 @@ RSpec.describe UsersController, type: :request do
         expect(assigns(:following).size).to eq(10)
         expected_array = user.reload.following.alphabetical.first(10)
         expect(assigns(:following)).to eq(expected_array)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
 
@@ -125,6 +126,7 @@ RSpec.describe UsersController, type: :request do
         expect(assigns(:following).size).to eq(5)
         expected_array = user.reload.following.alphabetical.last(5)
         expect(assigns(:following)).to eq(expected_array)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
 
@@ -136,6 +138,7 @@ RSpec.describe UsersController, type: :request do
         response_followers = assigns(:following)
         expect(user.reload.following.alphabetical.first(10)).not_to eq(response_followers)
         expect(user_follower.reload.following.alphabetical.first(10)).to eq(response_followers)
+        expect(assigns(:usernames_followed)).not_to be_nil
       end
     end
   end
