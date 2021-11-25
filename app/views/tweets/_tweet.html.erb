@@ -1,0 +1,13 @@
+<hr>
+<div>
+  <p>
+    <strong>
+      <%= tweet.user.full_name %>, 
+    </strong>
+    <%= tweet.user.username %> -
+    <%= tweet.created_at.to_formatted_s(:long_ordinal) %>
+  </p>
+  <p>
+    <%= tweet.message %>
+  </p>
+</div>

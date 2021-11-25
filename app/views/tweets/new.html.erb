@@ -1,1 +1,14 @@
 <h1> Post a new Tweet </h1>
+
+<%= form_for [current_user, @tweet] do |form| %>
+  <div class="p-4 my-5 border border-primary rounded d-flex justify-content-center mb-3">
+    <div class="mb-3">
+      <%= form.label :message, class: "form-label" %><br>
+      <%= form.text_area :message, class: "form-control", size: "50x5" %>
+      <% @tweet.errors.full_messages_for(:message).each do |message| %>
+        <p class="text-danger"> <%= message %> </p>
+      <% end %>
+    </div>    
+  </div>
+  <%= form.submit "Post", class: "btn btn-success btn-lg" %>
+<% end %>

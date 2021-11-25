@@ -1,0 +1,15 @@
+<nav class="navbar flex-column navbar-expand-lg navbar-dark bg-primary" style="width:100px;height:100vh;">
+  <a class="navbar-brand my-5" href="/">Navbar</a>
+
+  <ul class="navbar-nav mr-auto flex-column px-1" style="width:100px;">
+    <li class="nav-item active">
+      <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+  <button class="btn btn-danger">
+     <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"text-light" %>
+  </button>
+  </ul>
+</nav>

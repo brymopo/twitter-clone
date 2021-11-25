@@ -1,0 +1,8 @@
+<h1>
+  Followers list
+</h1>
+<% @followers.each do |account| %>
+  <%= render "follows/follow_info", account: account %>
+<% end %>
+
+<%= paginate @followers %>

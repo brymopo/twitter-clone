@@ -1,0 +1,26 @@
+<div>
+  <h1> <%= @user_actual.username %> </h1>
+  <p> <%= @user_actual.full_name %> </p>
+</div>
+<button class="btn btn-primary">
+  <%= link_to "Tweet", new_user_tweet_path(@user_actual), class: "text-light" %>
+</button>
+<div>
+  <div>
+    <p>
+      Following:
+    </p>
+    <%= link_to @user_actual.following_count, following_user_path(@user_actual) %>
+  </div>
+  <div>
+    <p>
+      Followers:
+    </p>
+    <%= link_to @user_actual.following_count, following_user_path(@user_actual) %>
+  </div>
+  <%= render "follows/follow_button", followee: @user_actual, list: @usernames_followed %>
+</div>
+
+<%= render partial: "tweets/tweet", collection: @tweets_feed %>
+
+<%= paginate @tweets_feed %>
