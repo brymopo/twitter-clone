@@ -1,8 +1,12 @@
 <h1>
   Followers list
 </h1>
-<% @followers.each do |account| %>
-  <%= render "follows/follow_info", account: account %>
-<% end %>
+<ul class="list-group my-3">
+  <% @followers.each do |account| %>
+    <li class="list-group-item">
+      <%= render "follows/follow_info", account: account %>
+    </li>
+  <% end %>
+</ul>
 
 <%= paginate @followers %>
