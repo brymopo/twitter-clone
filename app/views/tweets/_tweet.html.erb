@@ -1,13 +1,17 @@
 <hr>
-<div>
-  <p>
+<div class="card my-4">
+  <p class="card-header bg-primary text-white">
     <strong>
+      <i class="fas fa-user-circle"></i>
       <%= tweet.user.full_name %>, 
     </strong>
     <%= tweet.user.username %> -
+    <i class="far fa-clock"></i>
     <%= tweet.created_at.to_formatted_s(:long_ordinal) %>
   </p>
-  <p style="white-space: pre-wrap;">
-    <%= tweet.message %>
-  </p>
+  <div clas="card-body">
+    <p style="white-space: pre-wrap;" class="overflow-auto">
+      <%= tweet.message %>
+    </p>
+  </div>
 </div>
