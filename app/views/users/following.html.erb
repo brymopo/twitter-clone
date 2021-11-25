@@ -1,6 +1,9 @@
 <h1>
   Following list
 </h1>
+
+<%= link_to "Follow another user", new_user_follow_path(current_user), class: "btn btn-info" %>
+
 <% @following.each do |account| %>
   <%= render "follows/follow_info", account: account %>
 <% end %>

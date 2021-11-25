@@ -1,0 +1,27 @@
+<h1> Post a new Tweet </h1>
+
+<% unless @follow.errors.blank? %>
+  <% @follow.errors.to_hash.each do |attribute, errors| %>
+    <% unless errors.blank? %>
+      <p>
+        <%= attribute %>
+        <br>
+        <% errors.each do |error| %>
+          <span>
+            - <%= error %>
+          <span>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= form_with url:"/#{current_user.username}/follows", method: :post do |form| %>
+  <div class="p-4 my-5 border border-primary rounded d-flex justify-content-center mb-3">
+    <div class="mb-3">
+      <%= form.label :"follow[username]", class: "form-label" %><br>
+      <%= form.text_field :"follow[username]", class: "form-control" %>
+    </div>    
+  </div>
+  <%= form.submit "Post", class: "btn btn-success btn-lg" %>
+<% end %>
