@@ -5,7 +5,7 @@
       <i class="fas fa-user-circle"></i>
       <%= tweet.user.full_name %>, 
     </strong>
-    <%= tweet.user.username %> -
+    @<%= tweet.user.username %> -
     <i class="far fa-clock"></i>
     <%= tweet.created_at.to_formatted_s(:long_ordinal) %>
   </p>

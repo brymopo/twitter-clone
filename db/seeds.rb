@@ -31,7 +31,7 @@ end
 def create_tweet(user)
   created_at = Faker::Time.between(from: Date.today - 60, to: Date.today)
   Tweet.create(
-    message: Faker::Lorem.characters(number: 279),
+    message: Faker::Lorem.paragraph.first(279),
     user_id: user.id,
     created_at: created_at.to_s
   )
