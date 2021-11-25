@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def set_usernames_followed
-    @usernames_followed = current_user.following.pluck(:username)
+    @usernames_followed = current_user.following.pluck(:username).push(current_user.username)
   end
 
   def is_current_user?
