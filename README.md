@@ -1,24 +1,14 @@
-# README
+# TWITTER CLONE APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Ruby on rails web application that imitates twitter, built for practice purposes.
 
-Things you may want to cover:
+## Instalation
 
-* Ruby version
+1. Clone this repository `git clone https://github.com/brymopo/twitter-clone.git`
 
-* System dependencies
+2. Install all required dependencies `bundle install`
 
-* Configuration
+3. Start the application `rails s`
 
-* Database creation
+The app should now be accesible at http://localhost:3000/
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
