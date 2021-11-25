@@ -3,7 +3,7 @@
 <% unless @follow.errors.blank? %>
   <% @follow.errors.to_hash.each do |attribute, errors| %>
     <% unless errors.blank? %>
-      <p>
+      <p class="text-danger">
         <%= attribute %>
         <br>
         <% errors.each do |error| %>
