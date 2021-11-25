@@ -1,6 +1,6 @@
 <%= form_with url:"/#{current_user.username}/follows", method: :post do |form| %>
   <%= form.hidden_field :"follow[username]", value: followee.username %>
   <% unless list.include?(followee.username) %>
-    <%= form.submit "Follow" %>
+    <%= form.submit "Follow", class:"btn btn-primary" %>
   <% end %>
 <% end %>
