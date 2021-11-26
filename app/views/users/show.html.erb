@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <h1> @<%= @user_actual.username %> </h1>
+    <p> <%= @user_actual.full_name %> </p>
+    <%= render "follows/follow_button", followee: @user_actual, list: @usernames_followed %>
+  </div>
+</div>
+<div class="d-flex text-center my-4">
+  <div class="me-1 p-3 border-end border-info border-4">
+    <p class="h4">
+      Following:
+    </p>
+    <%= link_to @user_actual.following_count, following_user_path(@user_actual), class:"h5" %>
+  </div>
+
+  <div class="ms-1 p-3 border-end border-info border-4">
+    <p class="h4">
+      Followers:
+    </p>
+    <%= link_to @user_actual.followers_count, followers_user_path(@user_actual), class:"h5" %>
+  </div>
+  <% if @user_actual.username == current_user.username %>
+    <div class="ms-1 p-3 d-flex align-items-center">
+      <button class="btn btn-primary">
+        <%= link_to "Tweet", new_user_tweet_path(@user_actual), class: "text-light" %>
+      </button>
+    </div>
+  <% end %>
+</div>
+
+<%= render partial: "tweets/tweet", collection: @tweets_feed %>
+
+<%= paginate @tweets_feed %>

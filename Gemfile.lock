@@ -1,3 +1,20 @@
+GIT
+  remote: https://github.com/kaminari/kaminari
+  revision: 6318b9a36a994f07be3e252b2161d220ff1da5ff
+  specs:
+    kaminari (1.2.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.1)
+      kaminari-activerecord (= 1.2.1)
+      kaminari-core (= 1.2.1)
+    kaminari-actionview (1.2.1)
+      actionview
+      kaminari-core (= 1.2.1)
+    kaminari-activerecord (1.2.1)
+      activerecord
+      kaminari-core (= 1.2.1)
+    kaminari-core (1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +77,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.9.1)
@@ -114,6 +132,9 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.21.0)
+    parser (3.0.2.0)
+      ast (~> 2.4.1)
     pg (1.2.3)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -155,10 +176,12 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+    rainbow (3.0.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    regexp_parser (2.1.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -180,6 +203,18 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    rubocop (1.23.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.12.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.13.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -208,6 +243,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.1.0)
     uniform_notifier (1.14.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -238,6 +274,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   jbuilder (~> 2.7)
+  kaminari!
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
@@ -246,6 +283,7 @@ DEPENDENCIES
   rails-controller-testing
   rexml (~> 3.2, >= 3.2.4)
   rspec-rails (~> 5.0.0)
+  rubocop
   sass-rails (>= 6)
   shoulda-matchers (~> 5.0)
   spring

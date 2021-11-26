@@ -1,0 +1,16 @@
+<nav class="navbar fixed-top navbar-light bg-info bg-gradient px-4" style="width:100vw;">
+  <div>
+    <%= link_to image_tag("twitter_logo", size: "50x50", class: "rounded-circle"), root_path %>
+  </div>
+
+  <ul class="navbar-nav d-flex flex-row mr-auto px-1">
+    <li class="nav-item active mx-2">
+      <i class="fas fa-user-circle"></i>
+      <%= link_to "#{current_user.username}", user_path(current_user), class: "link-light" %>
+    </li>
+  <li class="nav-item active mx-2">
+     <i class="fas fa-sign-out-alt"></i>
+     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-danger" %>
+  </li>
+  </ul>
+</nav>

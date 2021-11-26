@@ -1,0 +1,6 @@
+<div class="d-flex align-items-center">
+  <p class="me-2">
+   <%= account.full_name %> <%= link_to "@#{account.username}", user_path(account) %>
+  </p>
+  <%= render "follows/follow_button", followee: account, list: @usernames_followed %>
+</div>

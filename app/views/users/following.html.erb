@@ -1,0 +1,15 @@
+<h1>
+  Following list
+</h1>
+
+<%= link_to "Follow another user", new_user_follow_path(current_user), class: "btn btn-info" %>
+
+<ul class="list-group my-3">
+  <% @following.each do |account| %>
+    <li class="list-group-item">
+    <%= render "follows/follow_info", account: account %>
+    </li>
+  <% end %>
+</ul>
+
+<%= paginate @following %>

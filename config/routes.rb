@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+
+  root to: "static_pages#index"
+
+  resources :users, path: "", param: :username, only: [:show] do
+    member do
+      get :followers
+      get :following
+    end
+    resources :tweets, only: %i[new create]
+    resources :follows, only: %i[new create]
+  end
 end
